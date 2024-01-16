@@ -1,4 +1,4 @@
-package com.github.kmachida12345.geminiplayground
+package com.github.kmachida12345.geminiplayground.ui.summarize
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

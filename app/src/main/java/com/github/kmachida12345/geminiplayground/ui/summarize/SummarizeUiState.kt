@@ -1,4 +1,4 @@
-package com.github.kmachida12345.geminiplayground
+package com.github.kmachida12345.geminiplayground.ui.summarize
 
 /**
  * A sealed hierarchy describing the state of the text generation.
