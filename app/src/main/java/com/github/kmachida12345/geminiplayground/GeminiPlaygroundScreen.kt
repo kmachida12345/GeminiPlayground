@@ -2,6 +2,7 @@ package com.github.kmachida12345.geminiplayground
 
 import androidx.compose.runtime.Composable
 import com.github.kmachida12345.geminiplayground.ui.main.MainScreen
+import com.github.kmachida12345.geminiplayground.ui.multimodal.MultiModalRoute
 import com.github.kmachida12345.geminiplayground.ui.summarize.SummarizeRoute
 
 enum class GeminiPlaygroundScreen(
@@ -21,7 +22,11 @@ enum class GeminiPlaygroundScreen(
             SummarizeRoute()
         },
     ),
-    ;
+    MultiModal(
+        body = {
+            MultiModalRoute()
+        },
+    ), ;
 
     @Composable
     fun content(onScreenChange: (String) -> Unit = {}) {
@@ -29,11 +34,13 @@ enum class GeminiPlaygroundScreen(
     }
 
     companion object {
-        fun fromRoute(route: String?): GeminiPlaygroundScreen = when (route?.substringBefore("/")) {
-            Main.name -> Main
-            Summarize.name -> Summarize
-            null -> Summarize
-            else -> throw IllegalArgumentException("Route $route is not recognized.")
-        }
+        fun fromRoute(route: String?): GeminiPlaygroundScreen =
+            when (route?.substringBefore("/")) {
+                Main.name -> Main
+                Summarize.name -> Summarize
+                MultiModal.name -> MultiModal
+                null -> Summarize
+                else -> throw IllegalArgumentException("Route $route is not recognized.")
+            }
     }
 }

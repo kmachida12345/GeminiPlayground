@@ -47,6 +47,10 @@ fun GeminiPlaygroundApp() {
                         },
                     )
                 }
+
+                composable(GeminiPlaygroundScreen.MultiModal.name) {
+                    GeminiPlaygroundScreen.MultiModal.content()
+                }
             }
         }
     }

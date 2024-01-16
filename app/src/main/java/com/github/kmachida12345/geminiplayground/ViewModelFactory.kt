@@ -3,6 +3,7 @@ package com.github.kmachida12345.geminiplayground
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
+import com.github.kmachida12345.geminiplayground.ui.multimodal.MultiModalViewModel
 import com.github.kmachida12345.geminiplayground.ui.summarize.SummarizeViewModel
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.generationConfig
@@ -29,6 +30,17 @@ val ViewModelFactory = object : ViewModelProvider.Factory {
                     )
                     SummarizeViewModel(generativeModel)
                 }
+                isAssignableFrom(MultiModalViewModel::class.java) -> {
+                    // Initialize a GenerativeModel with the `gemini-pro-vision` AI model
+                    // for multimodal text generation
+                    val generativeModel = GenerativeModel(
+                        modelName = "gemini-pro-vision",
+                        apiKey = BuildConfig.apiKey,
+                        generationConfig = config
+                    )
+                    MultiModalViewModel(generativeModel)
+                }
+
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${viewModelClass.name}")
             }
