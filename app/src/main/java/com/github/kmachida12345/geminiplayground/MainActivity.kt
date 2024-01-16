@@ -34,10 +34,18 @@ fun GeminiPlaygroundApp() {
         ) {
             NavHost(
                 navController = navController,
-                startDestination = GeminiPlaygroundScreen.Summarize.name,
+                startDestination = GeminiPlaygroundScreen.Main.name,
             ) {
                 composable(GeminiPlaygroundScreen.Summarize.name) {
                     GeminiPlaygroundScreen.Summarize.content()
+                }
+
+                composable(GeminiPlaygroundScreen.Main.name) {
+                    GeminiPlaygroundScreen.Main.content(
+                        onScreenChange = { screen ->
+                            navController.navigate(screen)
+                        },
+                    )
                 }
             }
         }
